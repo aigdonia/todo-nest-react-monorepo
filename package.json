@@ -1,0 +1,15 @@
+{
+  "name": "todo-fullstack",
+  "version": "0.0.1-dev",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+		"dev": "pnpm dev",
+		"dev:app": "pnpm dev --filter=web",
+		"dev:server": "pnpm dev --filter=server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ahmed Gaber <aigdonia@gmail.com>",
+  "license": "ISC"
+}
