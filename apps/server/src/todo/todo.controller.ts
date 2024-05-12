@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -15,8 +15,8 @@ export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post()
-  create(@Body() todoBody: string) {
-    return this.todoService.create(todoBody);
+  create(@Body() { todo }: { todo: string }) {
+    return this.todoService.create(todo);
   }
 
   @Get()
@@ -24,7 +24,7 @@ export class TodoController {
     return this.todoService.findAll();
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateTodoDto: Pick<Todo, 'description' | 'completed'>,
