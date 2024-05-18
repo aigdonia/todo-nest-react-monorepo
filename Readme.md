@@ -8,6 +8,9 @@ apps/web-todo/public/preview.jpeg
 ### Backend
 	- Implemented using NestJS
 	- Authentication I used Auth0
-	- Database I used A NoSQL database due to the nature of the application, additionally I can deploy freely on cloud for demostration
+	- Database I used A NoSQL (MongoDB on Atlas) database due to the nature of the application, additionally I can deploy freely on cloud for demostration.
 
 ### Frontend
+	- Implemented using React with vite to build and serve.
+	- Used ReactQuery and React Hooks for data fetching and state management.
+	- Used TailwindCSS+Tremor for styling.
