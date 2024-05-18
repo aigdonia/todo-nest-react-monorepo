@@ -10,7 +10,7 @@ export const useTodoAPI = () => {
 	// ensure instance created only once.
 	const api = useMemo(() => axios.create({
 		// baseURL: import.meta.env.VITE_API_URL ?? "http://localhost"
-        baseURL: "http://54.164.189.111"
+        baseURL: "https://ec2-54-164-189-111.compute-1.amazonaws.com"
 	}), []);
 
     const authorizationParams = {
