@@ -9,8 +9,14 @@ export const useTodoAPI = () => {
 	// init Axios Instance for the API
 	// ensure instance created only once.
 	const api = useMemo(() => axios.create({
-		baseURL: import.meta.env.VITE_API_URL ?? "http://localhost"
+		// baseURL: import.meta.env.VITE_API_URL ?? "http://localhost"
+        baseURL: "http://54.164.189.111"
 	}), []);
+
+    const authorizationParams = {
+        audience: "https://dev-unr521cluqvwc41c.us.auth0.com/api/v2/",
+        scope: "openid_profile_email"
+    }
 
 	// Intercept requests to add authorization header
 	useEffect(() => {
@@ -18,17 +24,11 @@ export const useTodoAPI = () => {
 			let authToken;
 			try {
 				authToken = await getAccessTokenSilently({
-					authorizationParams: {
-						audience: import.meta.env.VITE_AUTH0_AUDIENCE,
-						scope: "openid_profile_email"
-					}
+					authorizationParams
 				});
 			} catch (e) {
 				authToken = await getAccessTokenWithPopup({
-					authorizationParams: {
-						audience: import.meta.env.VITE_AUTH0_AUDIENCE,
-						scope: "openid_profile_email"
-					}
+					authorizationParams
 				});
 			}
 
