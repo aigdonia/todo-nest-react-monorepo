@@ -32,13 +32,6 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-  build-deploy-web:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: checkout-prep
-    steps:
       - name: Build React Application
         run: pnpm -r --filter=web-todo build
 
@@ -54,11 +47,6 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v3
   
-  build-deploy-server:
-    runs-on: ubuntu-latest
-    needs: checkout-prep
-
-    steps:
       - name: Build Nest Application
         run: pnpm -r --filter=server build
 
