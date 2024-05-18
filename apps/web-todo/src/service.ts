@@ -12,7 +12,7 @@ export const createAPI = (apiInstance: AxiosInstance) => {
 		async complete(todoId: string):Promise<AxiosResponse> {
 			return await apiInstance.put(`/todo/${todoId}`, { completed: true })
 		},
-		async delete(todoId: string) {
+		async remove(todoId: string) {
 			return await apiInstance.delete(`/todo/${todoId}`)
 		}
 	}
