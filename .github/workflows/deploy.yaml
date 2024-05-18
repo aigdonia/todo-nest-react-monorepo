@@ -27,6 +27,12 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
+      - name: Build React Application
+        run: pnpm -r --filter=web-todo build
+
+      - name: explore serve
+        run: ls -l
+
       - name: Upload React Application
         uses: actions/upload-pages-artifact@v2
         with:
