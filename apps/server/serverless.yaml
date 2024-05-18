@@ -1,0 +1,18 @@
+service: nestjs-lambda
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+
+functions:
+  api:
+    handler: dist/lambda.handler
+    name: nest-todo-task
+    events:
+      - http:
+          path: /
+          method: any
+      - http:
+          path: /{proxy+}
+          method: any
