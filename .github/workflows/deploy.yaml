@@ -1,5 +1,6 @@
 name: Deploy Todo Application
 on:
+  workflow_dispatch: 
   push:
     branches:
       - main
