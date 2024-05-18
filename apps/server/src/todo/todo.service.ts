@@ -7,41 +7,46 @@ import { Todo } from './todo.schema';
 export class TodoService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<Todo>) {}
 
-  create(todoBody: string): Promise<Todo> {
-    const createdTodo = new this.todoModel({ description: todoBody });
+  create(userId: string, todoBody: string): Promise<Todo> {
+    const createdTodo = new this.todoModel({ description: todoBody, userId });
     return createdTodo.save();
   }
 
-  findAll(): Promise<Todo[]> {
-    return this.todoModel.find().exec();
+  findAllForUser(userId: string): Promise<Todo[]> {
+    return this.todoModel
+      .find({ userId })
+      .sort({ completed: 1, createdAt: -1, updatedAt: -1 })
+      .exec();
   }
 
   async update(
     id: string,
+    userId: string,
     todo: Pick<Todo, 'description' | 'completed'>,
   ): Promise<Todo | null> {
     try {
       //* find and update todo if exists, and return mutated todo
-      const mutatedTodo = await this.todoModel.findByIdAndUpdate(id, todo, {
-        new: true,
-      });
+      const mutatedTodo = await this.todoModel.findOneAndUpdate(
+        { _id: id, userId }, // filter criteria
+        todo, // payload to update
+        { new: true }, // force return updated todo
+      );
       return mutatedTodo ? mutatedTodo.toObject() : null;
     } catch (error) {
       throw new Error(`Unable to update todo: ${error.message}`);
     }
   }
 
-  async delete(id: string): Promise<boolean> {
-    try {
-      const deletedTodo = await this.todoModel.findByIdAndDelete(id);
+  async delete(userId: string, id: string): Promise<boolean> {
+    const deletedTodo = await this.todoModel.findOneAndDelete({
+      _id: id,
+      userId,
+    });
 
-      if (!deletedTodo) {
-        throw new NotFoundException('Todo not found');
-      }
-
-      return true; // Indicates successful deletion
-    } catch (error) {
-      throw new Error(`Failed to delete todo: ${error.message}`);
+    if (!deletedTodo) {
+      throw new NotFoundException('Todo not found');
     }
+
+    return true; // Indicates successful deletion
   }
 }

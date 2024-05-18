@@ -6,6 +6,9 @@ export class Todo {
   @Prop({ type: Types.ObjectId, auto: true })
   id: Types.ObjectId;
 
+  @Prop({ required: true, select: false })
+  userId: string;
+
   @Prop({ required: true })
   description: string;
 
@@ -15,7 +18,7 @@ export class Todo {
   @Prop({ default: Date.now })
   createdAt: Date;
 
-  @Prop({ default: Date.now })
+  @Prop({ default: Date.now, select: false })
   updatedAt?: Date;
 }
 
