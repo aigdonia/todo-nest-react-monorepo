@@ -1,19 +1,14 @@
 name: Deploy Todo Application
 on:
-  workflow_dispatch: 
   push:
     branches:
       - main
-    paths: 
-      - 'apps/server/**'
-      - 'apps/web-todo/**'
 permissions:
   contents: read
   pages: write
   id-token: write
-
 jobs:
-  checkout-prep:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -43,19 +38,13 @@ jobs:
         with:
           path: ./apps/web-todo/dist
 
+  deploy-web:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
-  
-      - name: Build Nest Application
-        run: pnpm -r --filter=server build
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - name: Deploy Application
-        run: pnpm --filter=server deploy:aws
