@@ -7,6 +7,7 @@
 		"dev": "pnpm dev",
 		"dev:app": "pnpm dev --filter=web",
 		"dev:server": "pnpm dev --filter=server",
+		"build": "pnpm build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

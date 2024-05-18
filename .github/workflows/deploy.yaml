@@ -60,9 +60,6 @@ jobs:
     needs: checkout-prep
 
     steps:
-      - name: Install serverless globally
-        run: pnpm install -g serverless
-
       - name: Build Nest Application
         run: pnpm -r --filter=server build
 
