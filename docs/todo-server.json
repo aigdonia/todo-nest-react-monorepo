@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "6fc2e22a-8845-4705-89e8-7155041680b7",
+		"name": "Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "306652"
+	},
+	"item": [
+		{
+			"name": "Get List of Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create A Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"todo\": \"Finish this app task\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/todo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete a Todo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"completed\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/todo/66414303b43fe033d20c3d13",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todo",
+						"66414303b43fe033d20c3d13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A Todo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"completed\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/todo/66414303b43fe033d20c3d13",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todo",
+						"66414303b43fe033d20c3d13"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImlmRld2WDVXaFpDeFhna19xaEhGYyJ9.eyJpc3MiOiJodHRwczovL2Rldi11bnI1MjFjbHVxdndjNDFjLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExMzI5NDE1NzYzMTQxMzg5NjUzMiIsImF1ZCI6WyJodHRwczovL2Rldi11bnI1MjFjbHVxdndjNDFjLnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtdW5yNTIxY2x1cXZ3YzQxYy51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzE2MDYzOTc0LCJleHAiOjE3MTYxNTAzNzQsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI2VWNobmRDWUwzNUJhM3dBVjJrUzVlVmFicFR1b2pQbyJ9.2o82SbONBiKns729SuqGMeFIkluxRg_J-xDR09FH3H451WeOmaVN15PjnqCyiZPM6RuX1-2CWE1ve0v0QkIV5o4IUIRBDfW3BMaghQfLyNNRvQeTnJe9uzTE_9QGq8VDOU34FvXzSSbyAi1sjBC9Nx_6Id65VzgegdQByxlvNZYmkwh78EKOZHpb5ZLeJN698A2n-XQLdVya_sjL3NToxQhjVQMr-3VUuoc7meYNMjQDkcATRfqB2SDTuBKpmSdlLfBJ7tXgWdJENWVyhbTdSpv9-5C_47GB-6iqhbBk0AVZWhCZYd2hm40S64D-uZAhMHAiYFQ9jbQYcHukgIZCIQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:4001",
+			"type": "string"
+		}
+	]
+}
