@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./apps/server
+      dockerfile: Dockerfile
+    ports:
+      - "4001:4001"
+    environment:
+      NODE_ENV: production
+    volumes:
+      - .:/apps/server
+      - /apps/server/node_modules
+      - node_modules
+    command: ["pnpm", "start:prod"]
